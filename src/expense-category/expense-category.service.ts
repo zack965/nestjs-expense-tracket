@@ -10,7 +10,7 @@ export class ExpenseCategoryService {
         private expenseCategoryRepository: Repository<ExpenseCategory>,
     ) { }
     async findAll(): Promise<ExpenseCategory[]> {
-        return this.expenseCategoryRepository.find();
+        return this.expenseCategoryRepository.find({ relations: ['expenses'] });
     }
 
     async findOne(id: number): Promise<ExpenseCategory | null> {

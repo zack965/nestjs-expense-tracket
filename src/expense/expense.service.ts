@@ -20,7 +20,7 @@ export class ExpenseService {
     }
 
     async findOne(id: number): Promise<Expense> {
-        const expense = await this.expenseRepository.findOne({ where: { id } });
+        const expense = await this.expenseRepository.findOne({ where: { id }, relations: ['expenseCategory'] });
         if (!expense) throw new NotFoundException(`Expense with id ${id} not found`);
         return expense;
     }
