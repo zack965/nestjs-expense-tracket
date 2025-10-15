@@ -4,26 +4,27 @@ import { ExpenseService } from './expense.service';
 import { Expense } from './expense.entity';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
+import { ExpenseDto } from './dto/expense.dto';
 @Controller('expense')
 export class ExpenseController {
     constructor(private readonly expenseService: ExpenseService) { }
     @Get()
     @ApiOperation({ summary: 'Get all expenses' })
-    @ApiResponse({ status: 200, description: 'List of expenses', type: [Expense] })
+    @ApiResponse({ status: 200, description: 'List of expenses', type: [ExpenseDto] })
     async findAll(): Promise<Expense[]> {
         return this.expenseService.findAll();
     }
 
     @Get(':id')
     @ApiOperation({ summary: 'Get expense by ID' })
-    @ApiResponse({ status: 200, description: 'Expense found', type: Expense })
+    @ApiResponse({ status: 200, description: 'Expense found', type: ExpenseDto })
     async findOne(@Param('id') id: number): Promise<Expense> {
         return this.expenseService.findOne(id);
     }
 
     @Post()
     @ApiOperation({ summary: 'Create a new expense' })
-    @ApiResponse({ status: 201, description: 'Expense created', type: Expense })
+    @ApiResponse({ status: 201, description: 'Expense created', type: ExpenseDto })
     async create(@Body() dto: CreateExpenseDto): Promise<Expense> {
         return this.expenseService.create(dto);
     }
