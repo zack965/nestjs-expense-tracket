@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ExpenseCategoryModule } from './expense-category/expense-category.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExpenseModule } from './expense/expense.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { ExpenseModule } from './expense/expense.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    ExpenseModule
+    ExpenseModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
